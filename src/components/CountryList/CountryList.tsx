@@ -34,12 +34,12 @@ export interface CountryType {
   phone: string;
   capital: string;
   currency: string;
-  languages: [name: string, native: string, rtl: boolean];
+  languages: { name: string; native: string; rtl: boolean }[];
   continent: {
     name: string;
   };
   emoji: string;
-  states: [name: string];
+  states: { name: string }[];
 }
 
 function CountryList() {
@@ -51,8 +51,8 @@ function CountryList() {
   return (
     <Grid container spacing={2}>
       {data.countries.map((country: CountryType) => (
-        <Grid item xs={12} sm={6} lg={4}>
-          <CountryCard key={country.code} country={country} />
+        <Grid item xs={12} sm={6} lg={4} key={country.code}>
+          <CountryCard country={country} />
         </Grid>
       ))}
     </Grid>
