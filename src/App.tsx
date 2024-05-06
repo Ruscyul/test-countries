@@ -1,9 +1,12 @@
-import CountryCard from './components/CountryCard/CountryCard';
+import { Container } from '@mui/material';
+import CountryList from './components/CountryList/CountryList';
 
 function App() {
   return (
     <>
-      <CountryCard />
+      <Container maxWidth="lg">
+        <CountryList />
+      </Container>
     </>
   );
 }
