@@ -49,7 +49,7 @@ function CountryList() {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ paddingBlock: '16px' }}>
       {data.countries.map((country: CountryType) => (
         <Grid item xs={12} sm={6} lg={4} key={country.code}>
           <CountryCard country={country} />
