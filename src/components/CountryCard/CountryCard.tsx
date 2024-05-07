@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Typography } from '@mui/material';
+import { Box, Card, CardContent, Tooltip, Typography } from '@mui/material';
 import { CountryType } from '../CountryList/CountryList';
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import EuroSymbolIcon from '@mui/icons-material/EuroSymbol';
@@ -43,20 +43,26 @@ function CountryCard(props: CountryCardProps) {
 
         {country.languages.length > 0 && (
           <Typography sx={{ display: 'flex', alignItems: 'center' }}>
-            <TranslateIcon fontSize="inherit" sx={{ marginRight: '3px' }} />
+            <Tooltip title="Languages" arrow>
+              <TranslateIcon fontSize="inherit" sx={{ marginRight: '3px' }} />
+            </Tooltip>
             {country.languages.map((language) => language.name).join(', ')}
           </Typography>
         )}
 
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '5px' }}>
           <Typography sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <PhoneEnabledIcon fontSize="inherit" sx={{ marginRight: '3px' }} />
+            <Tooltip title="Phone code" arrow>
+              <PhoneEnabledIcon fontSize="inherit" sx={{ marginRight: '3px' }} />
+            </Tooltip>
             {`+${country.phone.split(',').join(', ')}`}
           </Typography>
 
           {country.currency && (
             <Typography sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <EuroSymbolIcon fontSize="inherit" sx={{ marginRight: '3px' }} />
+              <Tooltip title="Currency" arrow>
+                <EuroSymbolIcon fontSize="inherit" sx={{ marginRight: '3px' }} />
+              </Tooltip>
               {country.currency.split(',').join(', ')}
             </Typography>
           )}
