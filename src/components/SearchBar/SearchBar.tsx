@@ -1,6 +1,6 @@
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface SearchBarProps {
   searchQuery: string;
@@ -8,16 +8,15 @@ interface SearchBarProps {
 }
 
 function SearchBar(props: SearchBarProps) {
-  const { searchQuery, setSearchQuery } = props;
+  const { setSearchQuery } = props;
   const [text, setText] = useState('');
 
-  // function handleChange(event: ChangeEvent<HTMLInputElement>) {
-  //   const value = event.target.value.toUpperCase();
-  //   setSearchQuery(value);
-  // }
-
-  function handleClick() {
+  function handleSearchClick() {
     setSearchQuery(text);
+  }
+
+  function handleClearClick() {
+    setText('');
   }
 
   useEffect(() => {
@@ -36,8 +35,15 @@ function SearchBar(props: SearchBarProps) {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <IconButton aria-label="search" edge="end" onClick={handleClick}>
+              <IconButton aria-label="search" edge="start" onClick={handleSearchClick}>
                 <SearchIcon />
+              </IconButton>
+            </InputAdornment>
+          ),
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton aria-label="clear" edge="end" onClick={handleClearClick}>
+                ⨯
               </IconButton>
             </InputAdornment>
           ),
