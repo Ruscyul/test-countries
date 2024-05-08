@@ -12,7 +12,7 @@ function SearchBar(props: SearchBarProps) {
   const [text, setText] = useState('');
 
   function handleSearchClick() {
-    setSearchQuery(text);
+    setSearchQuery(text.toUpperCase());
   }
 
   function handleClearClick() {
@@ -32,6 +32,7 @@ function SearchBar(props: SearchBarProps) {
         onChange={(event) => setText(event.target.value)}
         label="Search by country code (e.g. US)"
         size="small"
+        inputProps={{ maxLength: 2 }}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
