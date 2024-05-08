@@ -1,4 +1,4 @@
-import { AppBar, Container, CssBaseline, Link, Toolbar } from '@mui/material';
+import { AppBar, CircularProgress, Container, CssBaseline, Link, Toolbar } from '@mui/material';
 import CountryList from './components/CountryList/CountryList';
 import SearchBar from './components/SearchBar/SearchBar';
 import { useState } from 'react';
@@ -72,21 +72,25 @@ function App() {
 
   return (
     <CssBaseline>
-      <AppBar sx={{ paddingBlock: '16px' }} color="inherit">
-        <Container
-          maxWidth="lg"
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '5px' }}
-        >
-          <Link href="#" variant="button" color="inherit" underline="none">
-            Countries
-          </Link>
-          <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        </Container>
+      <AppBar color="inherit">
+        <Toolbar>
+          <Container
+            maxWidth="lg"
+            sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '5px' }}
+          >
+            <Link href="#" variant="button" color="inherit" underline="none">
+              Countries
+            </Link>
+            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+          </Container>
+        </Toolbar>
       </AppBar>
       <Toolbar />
       <Container maxWidth="lg">
         {loading ? (
-          <p>Loading...</p>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
+            <CircularProgress />
+          </div>
         ) : error ? (
           <p>Error: {error.message}</p>
         ) : (
