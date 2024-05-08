@@ -11,7 +11,8 @@ function SearchBar(props: SearchBarProps) {
   const { setSearchQuery } = props;
   const [text, setText] = useState('');
 
-  function handleSearchClick() {
+  function handleSearchSumbit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     setSearchQuery(text.toUpperCase());
   }
 
@@ -26,7 +27,7 @@ function SearchBar(props: SearchBarProps) {
   }, [text]);
 
   return (
-    <>
+    <form onSubmit={handleSearchSumbit}>
       <TextField
         value={text}
         onChange={(event) => setText(event.target.value)}
@@ -36,7 +37,7 @@ function SearchBar(props: SearchBarProps) {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <IconButton aria-label="search" edge="start" onClick={handleSearchClick}>
+              <IconButton type="submit" aria-label="search" edge="start">
                 <SearchIcon />
               </IconButton>
             </InputAdornment>
@@ -50,7 +51,7 @@ function SearchBar(props: SearchBarProps) {
           ),
         }}
       />
-    </>
+    </form>
   );
 }
 
