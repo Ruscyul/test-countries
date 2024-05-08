@@ -1,31 +1,5 @@
-import { useQuery, gql } from '@apollo/client';
 import CountryCard from '../CountryCard/CountryCard';
 import { Grid } from '@mui/material';
-
-const GET_COUNTRIES = gql`
-  query {
-    countries {
-      code
-      name
-      native
-      phone
-      capital
-      currency
-      languages {
-        name
-        native
-        rtl
-      }
-      continent {
-        name
-      }
-      emoji
-      states {
-        name
-      }
-    }
-  }
-`;
 
 export interface CountryType {
   code: string;
@@ -42,15 +16,17 @@ export interface CountryType {
   states: { name: string }[];
 }
 
-function CountryList() {
-  const { loading, error, data } = useQuery(GET_COUNTRIES);
+interface CountryListProps {
+  countries: CountryType[];
+}
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+function CountryList(props: CountryListProps) {
+  const { countries } = props;
 
   return (
     <Grid container spacing={2} sx={{ paddingBlock: '16px' }}>
-      {data.countries.map((country: CountryType) => (
+      {countries.length === 0 && <p>No countries found</p>}
+      {countries.map((country: CountryType) => (
         <Grid item xs={12} sm={6} lg={4} key={country.code}>
           <CountryCard country={country} />
         </Grid>
