@@ -2,70 +2,19 @@ import { AppBar, Box, Container, CssBaseline, Link, Toolbar } from '@mui/materia
 import CountryList from './components/CountryList/CountryList';
 import SearchBar from './components/SearchBar/SearchBar';
 import { useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
 import CountryCard from './components/CountryCard/CountryCard';
 import Spinner from './components/Spinner/Spinner';
-
-const GET_COUNTRIES = gql`
-  query GetCountries {
-    countries {
-      code
-      name
-      native
-      phone
-      capital
-      currency
-      languages {
-        name
-        native
-        rtl
-      }
-      continent {
-        name
-      }
-      emoji
-      states {
-        name
-      }
-    }
-  }
-`;
-
-const GET_COUNTRY_BY_CODE = gql`
-  query GetCountryByCode($searchQuery: [String!]) {
-    countries(filter: { code: { in: $searchQuery } }) {
-      code
-      name
-      native
-      phone
-      capital
-      currency
-      languages {
-        name
-        native
-        rtl
-      }
-      continent {
-        name
-      }
-      emoji
-      states {
-        name
-      }
-    }
-  }
-`;
+import { useCountriesQuery } from './hooks/useCountriesQuery';
+import { useCountryByCodeQuery } from './hooks/useCountryByCodeQuery';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const { loading: countriesLoading, error: countriesError, data: countriesData } = useQuery(GET_COUNTRIES);
+  const { loading: countriesLoading, error: countriesError, data: countriesData } = useCountriesQuery();
   const {
     loading: countryByCodeLoading,
     error: countryByCodeError,
     data: countryByCodeData,
-  } = useQuery(GET_COUNTRY_BY_CODE, {
-    variables: { searchQuery },
-  });
+  } = useCountryByCodeQuery(searchQuery);
 
   const renderSearchResult = searchQuery && (
     <>
