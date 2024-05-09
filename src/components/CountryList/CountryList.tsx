@@ -1,3 +1,4 @@
+import React from 'react';
 import CountryCard from '../CountryCard/CountryCard';
 import { Grid } from '@mui/material';
 
@@ -35,4 +36,4 @@ function CountryList(props: CountryListProps) {
   );
 }
 
-export default CountryList;
+export default React.memo(CountryList);

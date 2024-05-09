@@ -1,8 +1,10 @@
-import { AppBar, CircularProgress, Container, CssBaseline, Link, Toolbar } from '@mui/material';
+import { AppBar, Box, Container, CssBaseline, Link, Toolbar } from '@mui/material';
 import CountryList from './components/CountryList/CountryList';
 import SearchBar from './components/SearchBar/SearchBar';
 import { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
+import CountryCard from './components/CountryCard/CountryCard';
+import Spinner from './components/Spinner/Spinner';
 
 const GET_COUNTRIES = gql`
   query GetCountries {
@@ -65,10 +67,19 @@ function App() {
     variables: { searchQuery },
   });
 
-  const loading = countriesLoading || countryByCodeLoading;
-  const error = countriesError || countryByCodeError;
-
-  const countries = searchQuery ? countryByCodeData?.countries : countriesData?.countries;
+  const searchResult = searchQuery && (
+    <Box>
+      {countryByCodeLoading ? (
+        <Spinner />
+      ) : countryByCodeError ? (
+        <p>Error: {countryByCodeError.message}</p>
+      ) : countryByCodeData && countryByCodeData.countries.length === 0 ? (
+        <p>No country found...</p>
+      ) : (
+        <CountryCard country={countryByCodeData.countries[0]} />
+      )}
+    </Box>
+  );
 
   return (
     <CssBaseline>
@@ -87,14 +98,23 @@ function App() {
       </AppBar>
       <Toolbar />
       <Container maxWidth="lg">
-        {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
-            <CircularProgress />
-          </div>
-        ) : error ? (
-          <p>Error: {error.message}</p>
+        {countriesLoading ? (
+          <Spinner />
+        ) : countriesError ? (
+          <p>Error: {countriesError.message}</p>
         ) : (
-          <CountryList countries={countries || []} />
+          <>
+            {searchResult}
+            <Box
+              sx={{
+                ...(searchQuery && {
+                  visibility: 'hidden',
+                }),
+              }}
+            >
+              <CountryList countries={countriesData.countries || []} />
+            </Box>
+          </>
         )}
       </Container>
     </CssBaseline>
