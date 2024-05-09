@@ -25,7 +25,7 @@ function CountryList(props: CountryListProps) {
   const { countries } = props;
 
   return (
-    <Grid container spacing={2} sx={{ paddingBlock: '16px' }}>
+    <Grid container spacing={2}>
       {countries.length === 0 && <p>No countries found</p>}
       {countries.map((country: CountryType) => (
         <Grid item xs={12} sm={6} lg={4} key={country.code}>
