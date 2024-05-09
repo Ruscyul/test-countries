@@ -1,9 +1,9 @@
 import { Box, Card, CardContent, Tooltip, Typography } from '@mui/material';
-import { CountryType } from '../CountryList/CountryList';
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import EuroSymbolIcon from '@mui/icons-material/EuroSymbol';
 import TranslateIcon from '@mui/icons-material/Translate';
 import { polyfillCountryFlagEmojis } from 'country-flag-emoji-polyfill';
+import { CountryType } from '../../types';
 
 polyfillCountryFlagEmojis();
 

@@ -1,21 +1,7 @@
 import React from 'react';
 import CountryCard from '../CountryCard/CountryCard';
 import { Grid } from '@mui/material';
-
-export interface CountryType {
-  code: string;
-  name: string;
-  native: string;
-  phone: string;
-  capital: string;
-  currency: string;
-  languages: { name: string; native: string; rtl: boolean }[];
-  continent: {
-    name: string;
-  };
-  emoji: string;
-  states: { name: string }[];
-}
+import { CountryType } from '../../types';
 
 interface CountryListProps {
   countries: CountryType[];
