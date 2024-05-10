@@ -5,10 +5,9 @@ export interface CountryType {
   phone: string;
   capital: string;
   currency: string;
-  languages: { name: string; native: string; rtl: boolean }[];
+  languages: { name: string }[];
   continent: {
     name: string;
   };
   emoji: string;
-  states: { name: string }[];
 }
