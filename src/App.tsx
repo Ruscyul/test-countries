@@ -1,9 +1,6 @@
-import { AppBar, Box, Container, CssBaseline, Link, Toolbar } from '@mui/material';
-import CountryList from './components/CountryList/CountryList';
-import SearchBar from './components/SearchBar/SearchBar';
 import { useState } from 'react';
-import CountryCard from './components/CountryCard/CountryCard';
-import Spinner from './components/Spinner/Spinner';
+import { AppBar, Box, Container, CssBaseline, Link, Toolbar } from '@mui/material';
+import { CountryCard, CountryList, SearchBar, Spinner } from './components';
 import { useCountriesQuery } from './hooks/useCountriesQuery';
 import { useCountryByCodeQuery } from './hooks/useCountryByCodeQuery';
 
