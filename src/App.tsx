@@ -50,7 +50,7 @@ function App() {
             <Link href="#" variant="button" color="inherit" underline="none">
               Countries
             </Link>
-            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+            <SearchBar setSearchQuery={setSearchQuery} />
           </Toolbar>
         </Container>
       </AppBar>

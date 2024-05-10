@@ -3,7 +3,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from 'react';
 
 interface SearchBarProps {
-  searchQuery: string;
   setSearchQuery: (value: string) => void;
 }
 
